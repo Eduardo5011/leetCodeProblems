@@ -4,26 +4,18 @@
  */
 var productExceptSelf = function(nums) {
       const length = nums.length;
+      let answer = new Array(length)
+
+      answer[0] = 1
+      for(let i = 1; i < length; i++){
+          answer[i] = nums[i - 1] * answer[i - 1];
+      }
+
+      let rightProduct = 1;
+      for(let i = length - 1; i >= 0; i--){
+          answer[i] = answer[i] * rightProduct;
+          rightProduct *= nums[i]
+      }
     
- 
-    const left = new Array(length).fill(1);
-    const right = new Array(length).fill(1);
-    const answer = new Array(length);
-
-   
-    for (let i = 1; i < length; i++) {
-        left[i] = nums[i - 1] * left[i - 1];
-    }
-
-    // Calculate right products
-    for (let i = length - 2; i >= 0; i--) {
-        right[i] = nums[i + 1] * right[i + 1];
-    }
-
-   
-    for (let i = 0; i < length; i++) {
-        answer[i] = left[i] * right[i];
-    }
-
-    return answer;
+    return answer
 };
