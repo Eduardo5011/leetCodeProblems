@@ -3,18 +3,20 @@
  * @param {number} target
  * @return {number[]}
  */
+
+ //arrray of integers
+ // integer target
+ // for loop
+ // check if target adds 2 integers
+
+
+
 var twoSum = function(nums, target) {
-    const numIndices = new Map();
-
-    for (let i = 0; i < nums.length; i++) {
-        const complement = target - nums[i];
-
-        if (numIndices.has(complement)) {
-            return [numIndices.get(complement), i];
+    for(let i = 0; i < nums.length; i++){
+        for(let j = i + 1; j < nums.length; j ++){
+            if(nums[i] + nums[j] === target){
+                return [i, j]
+            }
         }
-
-        numIndices.set(nums[i], i);
     }
-
-    throw new Error("No two sum solution");
 };
